@@ -1,3 +1,5 @@
+import { MESSAGES } from "../constants/strings";
+
 export default function ProductCard({ product }) {
   return (
     <div className="product-card">
@@ -10,8 +12,10 @@ export default function ProductCard({ product }) {
         <h3 className="product-name">{product.name}</h3>
 
         <div className="card-footer">
-          <span className="product-price">{product.price} RON</span>
-          <button className="add-cart-btn">Adaugă</button>
+          <span className="product-price">
+            {product.price} {MESSAGES.CURRENCY}
+          </span>
+          <button className="add-cart-btn">{MESSAGES.ADD_TO_CART}</button>
         </div>
       </div>
     </div>
