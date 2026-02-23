@@ -12,15 +12,10 @@ const bikeSlice = createSlice({
   name: 'bikes',
   initialState: {
     items: [],
-    searchTerm: "",
     status: "idle", // 'idle' / 'loading' / 'succeeded' / 'failed'
     error: null
   },
-  reducers: {
-    setSearchTerm: (state, action) => {
-        state.searchTerm = action.payload;
-    }
-  },
+  reducers: {},
   extraReducers: builder => {
     builder
     .addCase(getBikes.pending, (state) => {
@@ -38,4 +33,3 @@ const bikeSlice = createSlice({
 });
 
 export default bikeSlice.reducer;
-export const { setSearchTerm } = bikeSlice.actions;
