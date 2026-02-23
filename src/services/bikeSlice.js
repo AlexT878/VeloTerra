@@ -12,19 +12,25 @@ const bikeSlice = createSlice({
   name: 'bikes',
   initialState: {
     items: [],
+    searchTerm: "",
     status: "idle", // 'idle' / 'loading' / 'succeeded' / 'failed'
     error: null
   },
-  reducers: {},
+  reducers: {
+    setSearchTerm: (state, action) => {
+        state.searchTerm = action.payload;
+    }
+  },
   extraReducers: builder => {
-    builder.addCase(getBikes.pending, (state) => {
+    builder
+    .addCase(getBikes.pending, (state) => {
         state.status = "loading";
     })
-    builder.addCase(getBikes.fulfilled, (state, action) => {
+    .addCase(getBikes.fulfilled, (state, action) => {
         state.items = action.payload;
         state.status = "succeeded";
     })
-    builder.addCase(getBikes.rejected, (state, action) => {
+    .addCase(getBikes.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
     })
@@ -32,3 +38,4 @@ const bikeSlice = createSlice({
 });
 
 export default bikeSlice.reducer;
+export const { setSearchTerm } = bikeSlice.actions;
