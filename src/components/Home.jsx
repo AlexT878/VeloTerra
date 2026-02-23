@@ -1,28 +1,21 @@
 import ProductCard from "./ProductCard";
 import "./Home.css";
-import { useState, useEffect } from "react";
-import { fetchBikes } from "../services/bikeService";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getBikes } from "../services/bikeSlice";
 
 export default function Home() {
-  const [bikeData, setBikeData] = useState([]);
+  const dispatch = useDispatch();
+  const bikes = useSelector((state) => state.bikes.items);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await fetchBikes();
-        setBikeData(data);
-      } catch (error) {
-        console.error("Fetch error:", error);
-      }
-    };
-
-    getData();
-  }, []);
+    dispatch(getBikes());
+  }, [dispatch]);
 
   return (
     <main className="landing-page">
       <div className="products-grid">
-        {bikeData.map((product) => (
+        {bikes.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
