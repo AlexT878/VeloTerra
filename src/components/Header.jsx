@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-left">
-        <Link className="logo">
+        <Link to="/" className="logo">
           <span className="logo-top">VELO</span>
           <span className="logo-bottom">terra</span>
         </Link>
