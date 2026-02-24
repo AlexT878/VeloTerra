@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getBikes } from "../services/bikeSlice";
 import { addToCart } from "../services/cartSlice";
-import { MESSAGES } from "../constants/strings";
+import { FILTER_OPTIONS, MESSAGES, SORT_OPTIONS } from "../constants/strings";
 import useBikes from "../hooks/useBikes";
+import FilterOption from "./Filters/FilterOption";
+import FilterManager from "./Filters/FilterManager";
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ export default function Shop() {
 
   return (
     <main className="central-container">
+      <FilterManager />
       <div className="products-grid">
         {status === "loading" && <h3>{MESSAGES.LOADING}</h3>}
         {status === "failed" && <h3>{MESSAGES.WRONG}</h3>}

@@ -17,7 +17,7 @@
 
 .search-container input:focus {
   border-color: var(--accent-green);
-  width: 280px;
+  width: 33rem;
   background-color: var(--white);
   box-shadow: 0 0 0 3px rgba(126, 176, 109, 0.2);
 }

@@ -13,3 +13,37 @@ export const MESSAGES = {
     "No matter your destination, we have the right gear for your adventure. Explore our premium collection and choose quality.",
   LANDING_BUTTON: "See our offer",
 };
+
+export const SORT_OPTIONS = [
+  {
+    value: "price-asc",
+    text: "Price: Low to High",
+  },
+  {
+    value: "price-desc",
+    text: "Price: High to Low",
+  },
+];
+
+export const FILTER_OPTIONS = [
+  {
+    value: "all",
+    text: "All",
+  },
+  {
+    value: "bike",
+    text: "Bikes",
+  },
+  {
+    value: "gear",
+    text: "Gear",
+  },
+  {
+    value: "accs",
+    text: "Accessories",
+  },
+  {
+    value: "parts",
+    text: "Parts",
+  },
+];
