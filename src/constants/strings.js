@@ -6,5 +6,6 @@ export const MESSAGES = {
     CURRENCY: "RON",
     ADD_TO_CART: "Add",
     LOADING: "Loading...",
-    WRONG: "Ups, something went wrong!"
+    WRONG: "Ups, something went wrong!",
+    EMPTY_CART: "Ups! The cart appears to be empty."
 }

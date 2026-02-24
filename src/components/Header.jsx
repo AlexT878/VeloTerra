@@ -5,8 +5,17 @@ import { ARIA_LABEL } from "../constants/aria-labels";
 import { Link } from "react-router";
 import SearchBar from "./SearchBar";
 import ButtonDropdown from "./ButtonDropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../services/cartSlice";
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
+
+  function handleElementRemoved(item) {
+    dispatch(removeFromCart(item.id));
+  }
+
   return (
     <header className="header">
       <div className="header-left">
@@ -22,16 +31,14 @@ export default function Header() {
 
       <nav className="header-right">
         <ButtonDropdown
-          Icon={Heart}
+          Icon={ShoppingBag}
           size={24}
           strokeWidth={2}
-          ariaLabel={ARIA_LABEL.FAVORITES}
+          ariaLabel={ARIA_LABEL.CART}
+          items={cartItems}
+          onRemoveButtonClick={(item) => handleElementRemoved(item)}
+          empty_msg={MESSAGES.EMPTY_CART}
         />
-
-        <button className="icon-btn" aria-label={ARIA_LABEL.CART}>
-          <ShoppingBag size={24} strokeWidth={2} />
-          <span className="badge">0</span>
-        </button>
 
         <button className="account-btn" aria-label={ARIA_LABEL.MY_PROFILE}>
           <User size={20} strokeWidth={2.5} />

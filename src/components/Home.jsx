@@ -3,21 +3,16 @@ import "./Home.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getBikes } from "../services/bikeSlice";
+import { addToCart } from "../services/cartSlice";
 import { MESSAGES } from "../constants/strings";
 import useBikes from "../hooks/useBikes";
-import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { filteredResults, status } = useBikes();
-  const [cartData, setCartData] = useLocalStorage("cart");
 
   function handleAddToCartClickButton(product) {
-    const exists = cartData.find((item) => item.id === product.id);
-
-    if (!exists) {
-      setCartData((cartData) => [...cartData, product]);
-    }
+    dispatch(addToCart(product));
   }
 
   useEffect(() => {
