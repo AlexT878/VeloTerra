@@ -2,8 +2,16 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Landing from "./components/Landing";
 import Shop from "./components/Shop";
 import MainLayout from "./MainLayout";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
+  const theme = useSelector((state) => state.theme.theme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <BrowserRouter>
       <Routes>

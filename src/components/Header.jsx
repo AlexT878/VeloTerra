@@ -1,4 +1,4 @@
-import { Heart, ShoppingBag, User } from "lucide-react";
+import { Sun, Moon, ShoppingBag, User } from "lucide-react";
 import "./Header.css";
 import { MESSAGES } from "../constants/strings";
 import { ARIA_LABEL } from "../constants/aria-labels";
@@ -7,10 +7,12 @@ import SearchBar from "./SearchBar";
 import ButtonDropdown from "./Dropdown/ButtonDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../services/cartSlice";
+import { toggleTheme } from "../services/themeSlice";
 
 export default function Header() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const theme = useSelector((state) => state.theme.theme);
 
   function handleElementRemoved(item) {
     dispatch(removeFromCart(item.id));
@@ -43,6 +45,10 @@ export default function Header() {
         <button className="account-btn" aria-label={ARIA_LABEL.MY_PROFILE}>
           <User size={20} strokeWidth={2.5} />
           <span>{MESSAGES.MY_PROFILE}</span>
+        </button>
+
+        <button className="icon-btn" onClick={() => dispatch(toggleTheme())}>
+          {theme === "light" ? <Sun /> : <Moon />}
         </button>
       </nav>
     </header>

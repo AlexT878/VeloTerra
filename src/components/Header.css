@@ -1,17 +1,8 @@
-:root {
-  --primary-green: #2d5a27;
-  --accent-green: #7eb06d;
-  --soft-cream: #f9f7f2;
-  --bg-light: #f4f9f4;
-  --text-dark: #1a2e19;
-  --white: #ffffff;
-}
-
 .header {
   background-color: var(--white);
-  border-bottom: 2px solid var(--soft-cream);
+  border-bottom: 2px solid var(--border-color);
   padding: 1rem 2rem;
-  box-shadow: 0 4px 12px rgba(45, 90, 39, 0.05);
+  box-shadow: 0 4px 12px var(--shadow);
   position: sticky;
   top: 0;
   z-index: 100;
