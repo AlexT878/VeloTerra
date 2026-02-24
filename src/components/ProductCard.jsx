@@ -1,6 +1,6 @@
 import { MESSAGES } from "../constants/strings";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onClickAddToCartButton }) {
   return (
     <div className="product-card">
       <div className="card-image-placeholder">
@@ -15,7 +15,9 @@ export default function ProductCard({ product }) {
           <span className="product-price">
             {product.price} {MESSAGES.CURRENCY}
           </span>
-          <button className="add-cart-btn">{MESSAGES.ADD_TO_CART}</button>
+          <button className="add-cart-btn" onClick={onClickAddToCartButton}>
+            {MESSAGES.ADD_TO_CART}
+          </button>
         </div>
       </div>
     </div>

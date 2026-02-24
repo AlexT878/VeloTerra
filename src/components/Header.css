@@ -57,37 +57,6 @@
     justify-content: center;
 }
 
-.search-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.search-container input {
-  padding: 0.6rem 1rem 0.6rem 2.8rem;
-  border-radius: 25px;
-  border: 1px solid #e0e0e0;
-  background-color: var(--bg-light);
-  width: 220px;
-  outline: none;
-  color: var(--text-dark);
-  transition: all 0.3s ease;
-}
-
-.search-container input:focus {
-  border-color: var(--accent-green);
-  width: 280px;
-  background-color: var(--white);
-  box-shadow: 0 0 0 3px rgba(126, 176, 109, 0.2);
-}
-
-.search-icon {
-  position: absolute;
-  left: 14px;
-  color: #888;
-  transition: color 0.3s ease;
-}
-
 .header-right {
   display: flex;
   gap: 1.5rem;

@@ -2,16 +2,21 @@ import { MESSAGES } from "../constants/strings";
 import { Search } from "lucide-react";
 import { useState } from "react";
 import { useSearchParams } from "react-router";
+import "./SearchBar.css";
 
 export default function SearchBar() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialSearchInput = searchParams.get("search");
+  const initialSearchInput = searchParams.get("search") || "";
 
   const [searchInput, setSearchInput] = useState(initialSearchInput);
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSearchParams({ search: searchInput });
+    if (searchInput) {
+      setSearchParams({ search: searchInput });
+    } else {
+      setSearchParams({});
+    }
   }
 
   return (

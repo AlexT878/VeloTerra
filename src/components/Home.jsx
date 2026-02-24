@@ -5,10 +5,20 @@ import { useDispatch } from "react-redux";
 import { getBikes } from "../services/bikeSlice";
 import { MESSAGES } from "../constants/strings";
 import useBikes from "../hooks/useBikes";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { filteredResults, status } = useBikes();
+  const [cartData, setCartData] = useLocalStorage("cart");
+
+  function handleAddToCartClickButton(product) {
+    const exists = cartData.find((item) => item.id === product.id);
+
+    if (!exists) {
+      setCartData((cartData) => [...cartData, product]);
+    }
+  }
 
   useEffect(() => {
     dispatch(getBikes());
@@ -21,7 +31,11 @@ export default function Home() {
         {status === "failed" && <h3>{MESSAGES.WRONG}</h3>}
         {status === "succeeded" &&
           filteredResults.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              onClickAddToCartButton={() => handleAddToCartClickButton(product)}
+            />
           ))}
       </div>
     </main>

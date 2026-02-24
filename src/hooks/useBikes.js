@@ -7,8 +7,6 @@ export default function useBikes() {
 
     const searchTerm = searchParams.get("search") || "";
     const filteredResults = items.filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    console.log(filteredResults);
-
+    
     return {filteredResults, status};
 }
