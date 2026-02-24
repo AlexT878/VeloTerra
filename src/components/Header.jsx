@@ -4,7 +4,7 @@ import { MESSAGES } from "../constants/strings";
 import { ARIA_LABEL } from "../constants/aria-labels";
 import { Link } from "react-router";
 import SearchBar from "./SearchBar";
-import ButtonDropdown from "./ButtonDropdown";
+import ButtonDropdown from "./Dropdown/ButtonDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../services/cartSlice";
 
@@ -37,7 +37,7 @@ export default function Header() {
           ariaLabel={ARIA_LABEL.CART}
           items={cartItems}
           onRemoveButtonClick={(item) => handleElementRemoved(item)}
-          empty_msg={MESSAGES.EMPTY_CART}
+          emptyMsg={MESSAGES.EMPTY_CART}
         />
 
         <button className="account-btn" aria-label={ARIA_LABEL.MY_PROFILE}>
