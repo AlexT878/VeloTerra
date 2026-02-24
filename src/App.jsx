@@ -1,17 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Header from "./components/Header";
-import Home from "./components/Home";
+import Landing from "./components/Landing";
+import Shop from "./components/Shop";
+import MainLayout from "./MainLayout";
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      <Routes>
+        <Route path="/" element={<Landing />} />
 
-      <main className="main-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </main>
+        <Route element={<MainLayout />}>
+          <Route path="/shop" element={<Shop />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
