@@ -22,17 +22,14 @@ export const MESSAGES = {
   CONTACT_RETREAT:
     "Have you changed your mind and no longer want to leave us a message?",
   CONTACT_BACK: "Bike back to safety 🚴‍♂️💨",
+  IMAGE_PLACEHOLDER: "Image URL",
+  CATEGORY: "Category",
+  CREATE_PRODUCT_NAME: "Product Name",
+  CREATE_PRICE: "Price",
+  CREATE_BUTTON: "Create",
 };
 
 export const SORT_OPTIONS = [
-  {
-    value: "price-asc",
-    text: "Price: Low to High",
-  },
-  {
-    value: "price-desc",
-    text: "Price: High to Low",
-  },
   {
     value: "name-asc",
     text: "Name: A-Z",
@@ -40,6 +37,14 @@ export const SORT_OPTIONS = [
   {
     value: "name-desc",
     text: "Name: Z-A",
+  },
+  {
+    value: "price-asc",
+    text: "Price: Low to High",
+  },
+  {
+    value: "price-desc",
+    text: "Price: High to Low",
   },
 ];
 

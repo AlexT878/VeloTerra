@@ -12,11 +12,13 @@ import useFilteredProducts from "../hooks/useFilteredProducts";
 import Pagination from "./Pagination";
 import { ITEMS_PER_PAGE } from "../constants/values";
 import { useSelector } from "react-redux";
+import AddProductCard from "./AddProductCard";
 
 export default function Shop() {
   const dispatch = useDispatch();
   const { products, status } = useBikes();
   const { items } = useSelector((state) => state.bikes);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   const { paginatedItems, totalPages } = useFilteredProducts(products);
 
@@ -40,6 +42,7 @@ export default function Shop() {
       <div className="products-grid">
         {status === "loading" && <h3>{MESSAGES.LOADING}</h3>}
         {status === "failed" && <h3>{MESSAGES.WRONG}</h3>}
+        {isAdmin && <AddProductCard />}
         {status === "succeeded" &&
           paginatedItems.map((product) => (
             <ProductCard

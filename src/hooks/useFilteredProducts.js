@@ -23,13 +23,13 @@ export default function useFilteredProducts(items) {
     });
 
     results.sort((a, b) => {
-      if (sortParam === "price-asc" || sortParam === "") {
+      if (sortParam === "price-asc") {
         return a.price - b.price;
       }
       if (sortParam === "price-desc") {
         return b.price - a.price;
       }
-      if (sortParam === "name-asc") {
+      if (sortParam === "name-asc" || sortParam === "") {
         return a.name.localeCompare(b.name);
       }
       if (sortParam === "name-desc") {
