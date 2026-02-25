@@ -12,6 +12,8 @@ export const MESSAGES = {
   LANDING_DESCRIPTION:
     "No matter your destination, we have the right gear for your adventure. Explore our premium collection and choose quality.",
   LANDING_BUTTON: "See our offer",
+  PREVIOUS: "Previous",
+  NEXT: "Next",
 };
 
 export const SORT_OPTIONS = [

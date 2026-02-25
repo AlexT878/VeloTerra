@@ -9,12 +9,14 @@ import useBikes from "../hooks/useBikes";
 import FilterOption from "./Filters/FilterOption";
 import FilterManager from "./Filters/FilterManager";
 import useFilteredProducts from "../hooks/useFilteredProducts";
+import Pagination from "./Pagination";
+import { ITEMS_PER_PAGE } from "../constants/values";
 
 export default function Shop() {
   const dispatch = useDispatch();
   const { products, status } = useBikes();
 
-  const filteredProducts = useFilteredProducts(products);
+  const { paginatedItems, totalPages } = useFilteredProducts(products);
 
   function handleAddToCartClickButton(product) {
     dispatch(addToCart(product));
@@ -31,7 +33,7 @@ export default function Shop() {
         {status === "loading" && <h3>{MESSAGES.LOADING}</h3>}
         {status === "failed" && <h3>{MESSAGES.WRONG}</h3>}
         {status === "succeeded" &&
-          filteredProducts.map((product) => (
+          paginatedItems.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -39,6 +41,7 @@ export default function Shop() {
             />
           ))}
       </div>
+      {status === "succeeded" && <Pagination totalPages={totalPages} />}
     </main>
   );
 }

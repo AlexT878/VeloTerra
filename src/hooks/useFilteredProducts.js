@@ -1,12 +1,14 @@
 import { useSearchParams } from "react-router-dom";
 import { FILTER_OPTIONS } from "../constants/strings";
 import { useMemo } from "react";
+import { ITEMS_PER_PAGE } from "../constants/values";
 
 export default function useFilteredProducts(items) {
   const [searchParams] = useSearchParams();
 
   const categoryParam = searchParams.get("category") || "";
   const sortParam = searchParams.get("sort") || "";
+  const pageParam = searchParams.get("page") || 1;
 
   const selectedOption = FILTER_OPTIONS.find(
     (opt) => opt.value === categoryParam,
@@ -36,8 +38,20 @@ export default function useFilteredProducts(items) {
       return 0;
     });
 
-    return results;
-  }, [items, categoryName, categoryParam, sortParam]);
+    const totalItems = results.length;
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+    const safePage = Math.max(1, Math.min(pageParam, totalPages || 1));
+    const startIndex = (safePage - 1) * ITEMS_PER_PAGE;
+    const paginatedItems = results.slice(
+      startIndex,
+      startIndex + ITEMS_PER_PAGE,
+    );
+
+    return {
+      paginatedItems,
+      totalPages,
+    };
+  }, [items, categoryName, categoryParam, sortParam, pageParam]);
 
   return finalResults;
 }

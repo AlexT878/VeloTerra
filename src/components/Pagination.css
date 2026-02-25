@@ -1,0 +1,64 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding: 1rem;
+}
+
+.pagination-arrow {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  color: var(--primary-green);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pagination-arrow:hover:not(:disabled) {
+  background-color: var(--soft-cream);
+  border-color: var(--accent-green);
+}
+
+.pagination-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.pagination-info {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: inherit;
+  color: var(--text-dark);
+}
+
+.current-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.divider {
+  color: var(--border-color);
+  font-weight: 300;
+}
+
+.total-pages {
+  font-weight: 600;
+  color: var(--accent-green);
+}
