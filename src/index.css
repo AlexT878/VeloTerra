@@ -7,6 +7,7 @@
   --white: #ffffff;
   --border-color: #f0f0f0;
   --shadow: rgba(45, 90, 39, 0.06);
+  --shadow-strong: rgba(45, 90, 39, 0.2);
 }
 
 [data-theme='dark'] {

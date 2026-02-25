@@ -14,6 +14,14 @@ export const MESSAGES = {
   LANDING_BUTTON: "See our offer",
   PREVIOUS: "Previous",
   NEXT: "Next",
+  CONTACT: "Contact us",
+  NAME: "Name",
+  EMAIL: "Email",
+  MESSAGE: "Message",
+  SEND: "Send your thoughts",
+  CONTACT_RETREAT:
+    "Have you changed your mind and no longer want to leave us a message?",
+  CONTACT_BACK: "Bike back to safety 🚴‍♂️💨",
 };
 
 export const SORT_OPTIONS = [

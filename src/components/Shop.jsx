@@ -11,10 +11,12 @@ import FilterManager from "./Filters/FilterManager";
 import useFilteredProducts from "../hooks/useFilteredProducts";
 import Pagination from "./Pagination";
 import { ITEMS_PER_PAGE } from "../constants/values";
+import { useSelector } from "react-redux";
 
 export default function Shop() {
   const dispatch = useDispatch();
   const { products, status } = useBikes();
+  const { items } = useSelector((state) => state.bikes);
 
   const { paginatedItems, totalPages } = useFilteredProducts(products);
 
@@ -27,8 +29,10 @@ export default function Shop() {
   }
 
   useEffect(() => {
-    dispatch(getBikes());
-  }, [dispatch]);
+    if (items.length === 0) {
+      dispatch(getBikes());
+    }
+  }, [dispatch, items.length]);
 
   return (
     <main className="central-container">
