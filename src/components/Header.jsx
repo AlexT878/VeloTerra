@@ -8,14 +8,30 @@ import ButtonDropdown from "./Dropdown/ButtonDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../services/cartSlice";
 import { toggleTheme } from "../services/themeSlice";
+import { loginAsAdmin, logout } from "../services/authSlice";
 
 export default function Header() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const theme = useSelector((state) => state.theme.theme);
+  const { isAdmin, profileName } = useSelector((state) => state.auth);
+  const displayUserName = isAdmin ? profileName : MESSAGES.MY_PROFILE;
 
   function handleElementRemoved(item) {
     dispatch(removeFromCart(item.id));
+  }
+
+  function handleAuthClick() {
+    if (isAdmin) {
+      dispatch(logout());
+    } else {
+      const password = window.prompt("Admin password: ");
+      if (password === "admin") {
+        dispatch(loginAsAdmin());
+      } else if (password !== null) {
+        alert("Incorrect password");
+      }
+    }
   }
 
   return (
@@ -42,9 +58,13 @@ export default function Header() {
           emptyMsg={MESSAGES.EMPTY_CART}
         />
 
-        <button className="account-btn" aria-label={ARIA_LABEL.MY_PROFILE}>
+        <button
+          className="account-btn"
+          aria-label={ARIA_LABEL.MY_PROFILE}
+          onClick={handleAuthClick}
+        >
           <User size={20} strokeWidth={2.5} />
-          <span>{MESSAGES.MY_PROFILE}</span>
+          <span>{displayUserName}</span>
         </button>
 
         <button className="icon-btn" onClick={() => dispatch(toggleTheme())}>

@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 import "./Shop.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getBikes } from "../services/bikeSlice";
+import { getBikes, removeBike } from "../services/bikeSlice";
 import { addToCart } from "../services/cartSlice";
 import { FILTER_OPTIONS, MESSAGES, SORT_OPTIONS } from "../constants/strings";
 import useBikes from "../hooks/useBikes";
@@ -22,6 +22,10 @@ export default function Shop() {
     dispatch(addToCart(product));
   }
 
+  function handleDeleteBike(id) {
+    dispatch(removeBike(id));
+  }
+
   useEffect(() => {
     dispatch(getBikes());
   }, [dispatch]);
@@ -38,6 +42,7 @@ export default function Shop() {
               key={product.id}
               product={product}
               onClickAddToCartButton={() => handleAddToCartClickButton(product)}
+              onDeleteClick={handleDeleteBike}
             />
           ))}
       </div>
