@@ -8,10 +8,13 @@ import { FILTER_OPTIONS, MESSAGES, SORT_OPTIONS } from "../constants/strings";
 import useBikes from "../hooks/useBikes";
 import FilterOption from "./Filters/FilterOption";
 import FilterManager from "./Filters/FilterManager";
+import useFilteredProducts from "../hooks/useFilteredProducts";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const { filteredResults, status } = useBikes();
+  const { products, status } = useBikes();
+
+  const filteredProducts = useFilteredProducts(products);
 
   function handleAddToCartClickButton(product) {
     dispatch(addToCart(product));
@@ -28,7 +31,7 @@ export default function Shop() {
         {status === "loading" && <h3>{MESSAGES.LOADING}</h3>}
         {status === "failed" && <h3>{MESSAGES.WRONG}</h3>}
         {status === "succeeded" &&
-          filteredResults.map((product) => (
+          filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

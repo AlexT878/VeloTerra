@@ -7,11 +7,11 @@ export default function useBikes() {
   const [searchParams] = useSearchParams();
 
   const searchTerm = searchParams.get("search") || "";
-  const filteredResults = useMemo(() => {
+  const products = useMemo(() => {
     return items.filter((item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }, [items, searchTerm]);
 
-  return { filteredResults, status };
+  return { products, status };
 }

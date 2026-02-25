@@ -23,6 +23,14 @@ export const SORT_OPTIONS = [
     value: "price-desc",
     text: "Price: High to Low",
   },
+  {
+    value: "name-asc",
+    text: "Name: A-Z",
+  },
+  {
+    value: "name-desc",
+    text: "Name: Z-A",
+  },
 ];
 
 export const FILTER_OPTIONS = [
@@ -32,7 +40,7 @@ export const FILTER_OPTIONS = [
   },
   {
     value: "bike",
-    text: "Bikes",
+    text: "Bike",
   },
   {
     value: "gear",
