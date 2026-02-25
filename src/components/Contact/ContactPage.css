@@ -107,16 +107,6 @@
   color: #121212;
 }
 
-@media (max-width: 600px) {
-  .contact-page-wrapper .contact-wrapper {
-    padding: 2rem 1.5rem;
-  }
-
-  .contact-page-wrapper .contact-wrapper h2 {
-    font-size: 1.8rem;
-  }
-}
-
 .contact-page-wrapper .retreat-section {
   margin-top: 2rem;
   text-align: center;
@@ -154,4 +144,18 @@
 
 [data-theme="dark"] .contact-page-wrapper .retreat-section p {
   opacity: 0.5;
+}
+
+@media (max-width: 375px) {
+  .contact-page-wrapper .contact-wrapper {
+    padding: 1.5rem;
+  }
+
+  .contact-page-wrapper .contact-wrapper h2 {
+    font-size: 2rem;
+  }
+
+  .contact-page-wrapper .cta-button {
+    font-size: 1rem;
+  }
 }

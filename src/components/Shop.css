@@ -1,5 +1,5 @@
 .central-container {
-  padding: 3rem 2rem;
+  padding: 1.5rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -7,7 +7,7 @@
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .product-card {
@@ -138,4 +138,14 @@
 
 .remove-button:active {
   transform: scale(0.9);
+}
+
+@media (min-width: 1024px) {
+  .central-container {
+    padding: 3rem 2rem;
+  }
+
+  .products-grid {
+    gap: 2rem;
+  }
 }

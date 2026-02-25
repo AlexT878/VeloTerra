@@ -2,6 +2,13 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.search-container form {
+  width: 100%;
+  display: flex;
 }
 
 .search-container input {
@@ -10,21 +17,27 @@
   background-color: var(--bg-light);
   border: 1px solid var(--border-color);
   color: var(--text-dark);
-  width: 30rem;
+  width: 100%;
   outline: none;
   transition: all 0.3s ease;
 }
 
 .search-container input:focus {
   border-color: var(--accent-green);
-  width: 33rem;
   background-color: var(--white);
   box-shadow: 0 0 0 3px rgba(126, 176, 109, 0.2);
+  transform: scale(1.01);
 }
 
 .search-icon {
   position: absolute;
   left: 14px;
   color: #888;
-  transition: color 0.3s ease;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.search-container:focus-within .search-icon {
+  transform: scale(1.2);
+  color: var(--accent-green);
 }

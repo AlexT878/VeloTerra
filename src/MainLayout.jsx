@@ -9,7 +9,6 @@ export default function MainLayout() {
       <main className="main-container">
         <Outlet />
       </main>
-      <ContactButton />
     </>
   );
 }

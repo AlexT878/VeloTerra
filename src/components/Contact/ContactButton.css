@@ -27,3 +27,42 @@
 .floating-contact-btn:active {
   transform: scale(0.95);
 }
+
+.contact-header-container {
+  display: none;
+}
+
+.contact-floating-container {
+  display: block;
+}
+
+@media (max-width: 1515px) {
+  .contact-floating-container {
+    display: none;
+  }
+
+  .contact-header-container {
+    display: block;
+  }
+
+  .contact-header-container .floating-contact-btn {
+    position: static;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: none;
+    margin-left: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-header-container .contact-text {
+    display: none;
+  }
+
+  .contact-header-container .floating-contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow);
+  }
+}

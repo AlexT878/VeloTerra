@@ -10,6 +10,7 @@ import { removeFromCart } from "../services/cartSlice";
 import { toggleTheme } from "../services/themeSlice";
 import { loginAsAdmin, logout } from "../services/authSlice";
 import { loginWithSupabase, logoutFromSupabase } from "../services/authService";
+import ContactButton from "./Contact/ContactButton";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -53,6 +54,11 @@ export default function Header() {
 
       <div className="header-center">
         <SearchBar />
+        <ContactButton
+          size={18}
+          strokeWidth={2.6}
+          className="contact-header-container"
+        />
       </div>
 
       <nav className="header-right">
@@ -72,12 +78,18 @@ export default function Header() {
           onClick={handleAuthClick}
         >
           <User size={20} strokeWidth={2.5} />
-          <span>{displayUserName}</span>
+          <span className="account-name">{displayUserName}</span>
         </button>
 
         <button className="icon-btn" onClick={() => dispatch(toggleTheme())}>
           {theme === "light" ? <Sun /> : <Moon />}
         </button>
+
+        <ContactButton
+          size={24}
+          strokeWidth={2}
+          className="contact-floating-container"
+        />
       </nav>
     </header>
   );
