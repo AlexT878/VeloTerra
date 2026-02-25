@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../services/cartSlice";
 import { toggleTheme } from "../services/themeSlice";
 import { loginAsAdmin, logout } from "../services/authSlice";
+import { loginWithSupabase, logoutFromSupabase } from "../services/authService";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -21,16 +22,23 @@ export default function Header() {
     dispatch(removeFromCart(item.id));
   }
 
-  function handleAuthClick() {
-    if (isAdmin) {
-      dispatch(logout());
-    } else {
-      const password = window.prompt("Admin password: ");
-      if (password === "admin") {
+  async function handleAuthClick() {
+    try {
+      if (isAdmin) {
+        await logoutFromSupabase();
+        dispatch(logout());
+      } else {
+        const email = window.prompt("Email:");
+        if (!email) return;
+        const password = window.prompt("Password:");
+        if (!password) return;
+
+        await loginWithSupabase(email, password);
         dispatch(loginAsAdmin());
-      } else if (password !== null) {
-        alert("Incorrect password");
+        alert("Logged as Admin!");
       }
+    } catch (error) {
+      alert("Eroare: " + error.message);
     }
   }
 

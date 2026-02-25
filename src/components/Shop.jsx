@@ -40,9 +40,9 @@ export default function Shop() {
     <main className="central-container">
       <FilterManager />
       <div className="products-grid">
+        {isAdmin && <AddProductCard />}
         {status === "loading" && <h3>{MESSAGES.LOADING}</h3>}
         {status === "failed" && <h3>{MESSAGES.WRONG}</h3>}
-        {isAdmin && <AddProductCard />}
         {status === "succeeded" &&
           paginatedItems.map((product) => (
             <ProductCard
