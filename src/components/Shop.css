@@ -17,14 +17,14 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 12px 12px var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .product-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(45, 90, 39, 0.1);
+  box-shadow: 0 12px 35px var(--shadow);
 }
 
 .card-image-placeholder {
