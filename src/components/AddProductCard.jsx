@@ -22,15 +22,25 @@ export default function AddProductCard() {
   }
 
   async function handleCreate() {
-    if (!formData.name || !formData.price || !formData.category) {
+    if (
+      !formData.name.trim() ||
+      !formData.price.trim() ||
+      !formData.category.trim()
+    ) {
       alert("Please fill in the name, category and price!");
+      return;
+    }
+
+    const price = Number(formData.price);
+    if (isNaN(price) || price <= 0) {
+      alert("Price must be a positive number!");
       return;
     }
 
     const newProductData = {
       name: formData.name,
       category: formData.category,
-      price: Number(formData.price),
+      price: price,
       image: formData.image,
     };
     try {
