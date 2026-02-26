@@ -6,6 +6,7 @@ import ProductCard from "./ProductCard";
 import AddProductCard from "./AddProductCard";
 import FilterManager from "./Filters/FilterManager";
 import Pagination from "./Pagination";
+import Loader from "./Loader";
 
 import { getProducts, removeProduct } from "../services/productSlice";
 import { addToCart } from "../services/cartSlice";
@@ -41,7 +42,7 @@ export default function Shop() {
       <FilterManager />
       <div className="products-grid">
         {isAdmin && <AddProductCard />}
-        {status === "loading" && <h3>{MESSAGES.LOADING}</h3>}
+        {status === "loading" && <Loader />}
         {status === "failed" && <h3>{MESSAGES.WRONG}</h3>}
         {status === "succeeded" &&
           paginatedItems.map((product) => (
