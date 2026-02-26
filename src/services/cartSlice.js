@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { isValidProductPayload } from "./validator";
 
 const loadCartFromStorage = () => {
   try {
     const data = localStorage.getItem("cart");
-    return data ? JSON.parse(data) : [];
+    if (!data) return [];
+
+    const parsedData = JSON.parse(data);
+    if (!Array.isArray(parsedData)) return [];
+
+    return parsedData.filter((item) => isValidProductPayload(item, true));
   } catch (error) {
     console.log("Error getting cart from localStorage: ", error);
     return [];

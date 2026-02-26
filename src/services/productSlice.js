@@ -4,12 +4,15 @@ import {
   deleteProductFromDB,
   insertProductInDB,
 } from "./productService";
+import { isValidProductPayload } from "./validator";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 export const getProducts = createAsyncThunk("products/fetchAll", async () => {
   await delay(1000); // Simulate loading
-  return await fetchProducts();
+  const rawData = await fetchProducts();
+  if (!Array.isArray(rawData)) return [];
+  return rawData.filter((item) => isValidProductPayload(item, true));
 });
 
 export const removeProduct = createAsyncThunk("products/remove", async (id) => {
