@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ContactPage.css";
 import { MESSAGES } from "../../constants/strings";
 import { sendContactMessage } from "../../services/sendContactMessage";
 
 export default function ContactPage() {
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -11,7 +13,7 @@ export default function ContactPage() {
 
     try {
       const insertedData = await sendContactMessage(formValues);
-      alert(`${MESSAGES.SEND_MESSAGE_SUCCESSFULLY} ${insertedData.id})`);
+      alert(`${MESSAGES.SEND_MESSAGE_SUCCESSFULLY} ${insertedData.id}`);
       e.target.reset();
     } catch (error) {
       alert(`${MESSAGES.WRONG}`);
@@ -23,8 +25,8 @@ export default function ContactPage() {
     <div className="contact-page-wrapper">
       <main className="central-container">
         <div className="contact-wrapper">
-          <h2>{MESSAGES.CONTACT}</h2>
-          <form className="contact-form" onSubmit={(e) => handleSubmit(e)}>
+          <h2>{MESSAGES.CONTACT_US}</h2>
+          <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">{MESSAGES.NAME}</label>
               <input type="text" id="name" name="name" required />
@@ -51,9 +53,13 @@ export default function ContactPage() {
           </form>
           <div className="retreat-section">
             <p>{MESSAGES.CONTACT_RETREAT}</p>
-            <Link to="/shop" className="retreat-link">
+            <button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="retreat-link"
+            >
               {MESSAGES.CONTACT_BACK}
-            </Link>
+            </button>
           </div>
         </div>
       </main>

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./Pagination.css";
 import { MESSAGES } from "../constants/strings";
+import { ARIA_LABEL } from "../constants/aria-labels";
 
 export default function Pagination({ totalPages }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,7 +27,10 @@ export default function Pagination({ totalPages }) {
   };
 
   return (
-    <div className="pagination-container">
+    <nav
+      aria-label={ARIA_LABEL.PRODUCT_PAGINATION}
+      className="pagination-container"
+    >
       <button
         className="pagination-arrow"
         disabled={currentPage === 1}
@@ -48,6 +52,6 @@ export default function Pagination({ totalPages }) {
       >
         {MESSAGES.NEXT} &rarr;
       </button>
-    </div>
+    </nav>
   );
 }

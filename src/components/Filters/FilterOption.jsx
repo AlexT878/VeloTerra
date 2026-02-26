@@ -1,6 +1,7 @@
 import "./FilterOption.css";
 
 export default function FilterOption({
+  id,
   filterOptions,
   message,
   onChange,
@@ -9,9 +10,9 @@ export default function FilterOption({
   return (
     <div className="filter-dropdown">
       <div className="filter-group">
-        <label htmlFor="sort-by">{message}</label>
+        <label htmlFor={`sort-by-${id}`}>{message}</label>
         <select
-          id="sort-by"
+          id={`sort-by-${id}`}
           className="filter-select"
           value={value}
           onChange={(e) => onChange(e.target.value)}

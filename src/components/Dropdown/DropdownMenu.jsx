@@ -1,11 +1,6 @@
 import DropdownItem from "./DropdownItem";
 
-export default function DropdownMenu({
-  items,
-  emptyMsg,
-  onRemoveItem,
-  onClose,
-}) {
+export default function DropdownMenu({ items, emptyMsg, onClose }) {
   return (
     <>
       <div className="dropdown-overlay" onClick={onClose} />
@@ -14,7 +9,7 @@ export default function DropdownMenu({
         {items.length > 0 ? (
           <ul className="dropdown-list">
             {items.map((item) => (
-              <DropdownItem key={item.id} item={item} onRemove={onRemoveItem} />
+              <DropdownItem key={item.id} item={item} />
             ))}
           </ul>
         ) : (

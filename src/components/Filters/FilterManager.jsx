@@ -1,5 +1,9 @@
 import { useSearchParams } from "react-router-dom";
-import { FILTER_OPTIONS, SORT_OPTIONS } from "../../constants/strings";
+import {
+  FILTER_OPTIONS,
+  MESSAGES,
+  SORT_OPTIONS,
+} from "../../constants/strings";
 import FilterOption from "./FilterOption";
 
 export default function FilterManager() {
@@ -21,14 +25,16 @@ export default function FilterManager() {
   return (
     <div className="filter-container">
       <FilterOption
+        id="sort"
         filterOptions={SORT_OPTIONS}
-        message={"Sort by"}
+        message={MESSAGES.SORT_BY}
         value={currentSort}
         onChange={(name) => handleChanged(name, "sort")}
       />
       <FilterOption
+        id="filter"
         filterOptions={FILTER_OPTIONS}
-        message={"Category"}
+        message={MESSAGES.CATEGORY}
         value={currentFilter}
         onChange={(name) => handleChanged(name, "category")}
       />

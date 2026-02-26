@@ -1,4 +1,10 @@
-export default function DropdownItem({ item, onRemove }) {
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../services/cartSlice";
+import { ARIA_LABEL } from "../../constants/aria-labels";
+
+export default function DropdownItem({ item }) {
+  const dispatch = useDispatch();
+
   return (
     <li>
       <div className="list-row">
@@ -6,12 +12,13 @@ export default function DropdownItem({ item, onRemove }) {
         <span className="item-name">{item.name}</span>
         <button
           className="remove-item"
+          aria-label={ARIA_LABEL.REMOVE_FROM_CART}
           onClick={(e) => {
             e.stopPropagation();
-            onRemove(item);
+            dispatch(removeFromCart(item.id));
           }}
         >
-          ✕
+          <span>✕</span>
         </button>
       </div>
     </li>

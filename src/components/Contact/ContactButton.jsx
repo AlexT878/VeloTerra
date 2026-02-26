@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { MessageCircle } from "lucide-react";
 import "./ContactButton.css";
+import { MESSAGES } from "../../constants/strings";
 
 export default function ContactButton({ size, strokeWidth, className }) {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function ContactButton({ size, strokeWidth, className }) {
         aria-label="Contact"
       >
         <MessageCircle size={size} strokeWidth={strokeWidth} />
-        <span className="contact-text">Contact</span>
+        <span className="contact-text">{MESSAGES.CONTACT}</span>
       </button>
     </div>
   );

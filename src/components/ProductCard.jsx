@@ -1,11 +1,7 @@
 import { useSelector } from "react-redux";
 import { MESSAGES } from "../constants/strings";
 
-export default function ProductCard({
-  product,
-  onClickAddToCartButton,
-  onDeleteClick,
-}) {
+export default function ProductCard({ product, onAddToCart, onDeleteClick }) {
   const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   return (
@@ -29,7 +25,7 @@ export default function ProductCard({
           <span className="product-price">
             {product.price} {MESSAGES.CURRENCY}
           </span>
-          <button className="add-cart-btn" onClick={onClickAddToCartButton}>
+          <button className="add-cart-btn" onClick={onAddToCart}>
             {MESSAGES.ADD_TO_CART}
           </button>
         </div>

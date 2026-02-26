@@ -13,7 +13,8 @@ export const MESSAGES = {
   LANDING_BUTTON: "See our offer",
   PREVIOUS: "Previous",
   NEXT: "Next",
-  CONTACT: "Contact us",
+  CONTACT_US: "Contact us",
+  CONTACT: "Contact",
   NAME: "Name",
   EMAIL: "Email",
   MESSAGE: "Message",
@@ -23,11 +24,15 @@ export const MESSAGES = {
   CONTACT_BACK: "Bike back to safety 🚴‍♂️💨",
   IMAGE_PLACEHOLDER: "Image URL",
   CATEGORY: "Category",
+  SORT_BY: "Sort by",
   CREATE_PRODUCT_NAME: "Product Name",
   CREATE_PRICE: "Price",
   CREATE_BUTTON: "Create",
   SEND_MESSAGE_SUCCESSFULLY:
     "Thank you! Your message was sent successfully. (ID:",
+  OOPS: "Oops!",
+  NO_PRODUCT_FOUND:
+    "Looks like this product is playing hide and seek. Give it another shot, maybe this time it will be your lucky day!",
 };
 
 export const SORT_OPTIONS = [

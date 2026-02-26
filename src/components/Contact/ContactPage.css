@@ -125,7 +125,13 @@
 }
 
 .contact-page-wrapper .retreat-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
   padding-top: 1rem;
+
   color: var(--primary-green);
   text-decoration: none;
   font-weight: 700;

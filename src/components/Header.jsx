@@ -6,7 +6,6 @@ import { Link } from "react-router";
 import SearchBar from "./SearchBar";
 import ButtonDropdown from "./Dropdown/ButtonDropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../services/cartSlice";
 import { toggleTheme } from "../services/themeSlice";
 import { loginAsAdmin, logout } from "../services/authSlice";
 import { loginWithSupabase, logoutFromSupabase } from "../services/authService";
@@ -17,10 +16,6 @@ export default function Header() {
   const cartItems = useSelector((state) => state.cart.items);
   const theme = useSelector((state) => state.theme.theme);
   const { isAdmin, profileName } = useSelector((state) => state.auth);
-
-  function handleElementRemoved(item) {
-    dispatch(removeFromCart(item.id));
-  }
 
   async function handleAuthClick() {
     try {
@@ -38,7 +33,7 @@ export default function Header() {
         alert("Logged as Admin!");
       }
     } catch (error) {
-      alert("Eroare: " + error.message);
+      alert("Error: " + error.message);
     }
   }
 
@@ -67,7 +62,6 @@ export default function Header() {
           strokeWidth={2}
           ariaLabel={ARIA_LABEL.CART}
           items={cartItems}
-          onRemoveButtonClick={(item) => handleElementRemoved(item)}
           emptyMsg={MESSAGES.EMPTY_CART}
         />
 
@@ -80,7 +74,13 @@ export default function Header() {
           <span className="account-name">{profileName}</span>
         </button>
 
-        <button className="icon-btn" onClick={() => dispatch(toggleTheme())}>
+        <button
+          className="icon-btn"
+          onClick={() => dispatch(toggleTheme())}
+          aria-label={
+            theme === "light" ? ARIA_LABEL.CHANGE_DARK : ARIA_LABEL.CHANGE_LIGHT
+          }
+        >
           {theme === "light" ? <Sun /> : <Moon />}
         </button>
 

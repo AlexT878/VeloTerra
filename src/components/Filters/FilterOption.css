@@ -23,7 +23,7 @@
 
 .filter-select {
   padding: 0.6rem 1.5rem 0.6rem 0.85rem;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-family: inherit;
   font-weight: 500;
   color: var(--text-dark);
@@ -53,10 +53,6 @@
 .filter-select option {
   background-color: var(--white);
   color: var(--text-dark);
-}
-
-#sort-by {
-  font-size: 0.85rem;
 }
 
 .filter-container {

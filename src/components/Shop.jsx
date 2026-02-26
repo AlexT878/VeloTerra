@@ -1,32 +1,32 @@
-import ProductCard from "./ProductCard";
-import "./Shop.css";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; // Importuri grupate
+import "./Shop.css";
+
+import ProductCard from "./ProductCard";
+import AddProductCard from "./AddProductCard";
+import FilterManager from "./Filters/FilterManager";
+import Pagination from "./Pagination";
+
 import { getProducts, removeProduct } from "../services/productSlice";
 import { addToCart } from "../services/cartSlice";
-import { FILTER_OPTIONS, MESSAGES, SORT_OPTIONS } from "../constants/strings";
-import useBikes from "../hooks/useBikes";
-import FilterOption from "./Filters/FilterOption";
-import FilterManager from "./Filters/FilterManager";
+
+import useProducts from "../hooks/useProducts";
 import useFilteredProducts from "../hooks/useFilteredProducts";
-import Pagination from "./Pagination";
-import { ITEMS_PER_PAGE } from "../constants/values";
-import { useSelector } from "react-redux";
-import AddProductCard from "./AddProductCard";
+import { MESSAGES } from "../constants/strings";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const { products, status } = useBikes();
+  const { products, status } = useProducts();
   const { items } = useSelector((state) => state.products);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   const { paginatedItems, totalPages } = useFilteredProducts(products);
 
-  function handleAddToCartClickButton(product) {
+  function handleAddToCart(product) {
     dispatch(addToCart(product));
   }
 
-  function handleDeleteBike(id) {
+  function handleDeleteProduct(id) {
     dispatch(removeProduct(id));
   }
 
@@ -48,10 +48,16 @@ export default function Shop() {
             <ProductCard
               key={product.id}
               product={product}
-              onClickAddToCartButton={() => handleAddToCartClickButton(product)}
-              onDeleteClick={handleDeleteBike}
+              onAddToCart={() => handleAddToCart(product)}
+              onDeleteClick={handleDeleteProduct}
             />
           ))}
+        {status === "succeeded" && paginatedItems.length === 0 && (
+          <div className="empty-state-container">
+            <h2 className="empty-state-title">{MESSAGES.OOPS}</h2>
+            <p className="empty-state-message">{MESSAGES.NO_PRODUCT_FOUND}</p>
+          </div>
+        )}
       </div>
       {status === "succeeded" && <Pagination totalPages={totalPages} />}
     </main>

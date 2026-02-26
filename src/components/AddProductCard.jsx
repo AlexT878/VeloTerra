@@ -21,24 +21,25 @@ export default function AddProductCard() {
     });
   }
 
-  function handleCreate() {
+  async function handleCreate() {
     if (!formData.name || !formData.price || !formData.category) {
       alert("Please fill in the name, category and price!");
       return;
     }
 
-    const newBikeData = {
+    const newProductData = {
       name: formData.name,
       category: formData.category,
       price: Number(formData.price),
       image: formData.image,
     };
-
-    // Await because it async
-    const idNewProduct = dispatch(addProduct(newBikeData));
-    alert("New product added succesefully! ID: ", idNewProduct);
-
-    setFormData({ name: "", category: "", price: "", image: "" });
+    try {
+      const result = await dispatch(addProduct(newProductData)).unwrap();
+      alert(`New product added successfully! ID: ${result.id}`);
+      setFormData({ name: "", category: "", price: "", image: "" });
+    } catch (error) {
+      alert(`Add product error: ${error.message}`);
+    }
   }
 
   return (
@@ -63,6 +64,7 @@ export default function AddProductCard() {
           onChange={handleChange}
         />
         <input
+          autoComplete="off"
           type="text"
           name="name"
           className="product-name input-name"
