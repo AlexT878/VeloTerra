@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addBike } from "../services/bikeSlice";
+import { addProduct } from "../services/productSlice";
 import "./AddProductCard.css";
 import { MESSAGES } from "../constants/strings";
 
@@ -34,7 +34,9 @@ export default function AddProductCard() {
       image: formData.image,
     };
 
-    dispatch(addBike(newBikeData));
+    // Await because it async
+    const idNewProduct = dispatch(addProduct(newBikeData));
+    alert("New product added succesefully! ID: ", idNewProduct);
 
     setFormData({ name: "", category: "", price: "", image: "" });
   }

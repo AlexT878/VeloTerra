@@ -2,12 +2,11 @@ export const MESSAGES = {
   LOGO_TOP: "VELO",
   LOGO_BOTTOM: "terra",
   SEARCH: "Search for products...",
-  MY_PROFILE: "Log in",
   CURRENCY: "RON",
   ADD_TO_CART: "Add",
   LOADING: "Loading...",
-  WRONG: "Ups, something went wrong!",
-  EMPTY_CART: "Ups! The cart appears to be empty.",
+  WRONG: "Oops, something went wrong!",
+  EMPTY_CART: "Oops! The cart appears to be empty.",
   LANDING_TITLE: "Find YOUR perfect bike",
   LANDING_DESCRIPTION:
     "No matter your destination, we have the right gear for your adventure. Explore our premium collection and choose quality.",
@@ -27,6 +26,8 @@ export const MESSAGES = {
   CREATE_PRODUCT_NAME: "Product Name",
   CREATE_PRICE: "Price",
   CREATE_BUTTON: "Create",
+  SEND_MESSAGE_SUCCESSFULLY:
+    "Thank you! Your message was sent successfully. (ID:",
 };
 
 export const SORT_OPTIONS = [

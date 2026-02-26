@@ -1,8 +1,8 @@
 import { supabase } from "./supabase";
 
-export async function fetchBikes() {
+export async function fetchProducts() {
   try {
-    const { data, error } = await supabase.from("bikes").select("*");
+    const { data, error } = await supabase.from("products").select("*");
 
     if (error) {
       throw error;
@@ -10,16 +10,16 @@ export async function fetchBikes() {
 
     return data;
   } catch (error) {
-    console.error("Error:", error.message);
+    console.error("Error fetching products:", error.message);
     throw error;
   }
 }
 
-export async function insertBikeInDB(bikeData) {
+export async function insertProductInDB(productData) {
   try {
     const { data, error } = await supabase
-      .from("bikes")
-      .insert([bikeData])
+      .from("products")
+      .insert([productData])
       .select();
 
     if (error) {
@@ -28,14 +28,14 @@ export async function insertBikeInDB(bikeData) {
 
     return data[0];
   } catch (error) {
-    console.error("Error adding bike:", error.message);
+    console.error("Error adding product:", error.message);
     throw error;
   }
 }
 
-export async function deleteBikeFromDB(id) {
+export async function deleteProductFromDB(id) {
   try {
-    const { error } = await supabase.from("bikes").delete().eq("id", id);
+    const { error } = await supabase.from("products").delete().eq("id", id);
 
     if (error) {
       throw error;

@@ -4,14 +4,16 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     isAdmin: false,
-    profileName: "Admin",
+    profileName: "Log in",
   },
   reducers: {
     loginAsAdmin: (state) => {
       state.isAdmin = true;
+      state.profileName = "Admin";
     },
     logout: (state) => {
       state.isAdmin = false;
+      state.profileName = "Log in";
     },
   },
 });

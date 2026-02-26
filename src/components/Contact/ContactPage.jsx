@@ -4,13 +4,19 @@ import { MESSAGES } from "../../constants/strings";
 import { sendContactMessage } from "../../services/sendContactMessage";
 
 export default function ContactPage() {
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.target);
     const formValues = Object.fromEntries(data.entries());
-    sendContactMessage(formValues);
-    alert("Thank you for your message!");
-    e.target.reset();
+
+    try {
+      const insertedData = await sendContactMessage(formValues);
+      alert(`${MESSAGES.SEND_MESSAGE_SUCCESSFULLY} ${insertedData.id})`);
+      e.target.reset();
+    } catch (error) {
+      alert(`${MESSAGES.WRONG}`);
+      console.error(error);
+    }
   }
 
   return (

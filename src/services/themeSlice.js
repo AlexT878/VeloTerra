@@ -1,8 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { DEFAULT_THEME } from "../constants/values";
 
 const loadThemeFromStorage = () => {
-  const data = localStorage.getItem("theme");
-  return data ? data : "light";
+  try {
+    const theme = localStorage.getItem("theme");
+    if (theme !== "light" && theme !== "dark") {
+      return DEFAULT_THEME;
+    }
+    return theme;
+  } catch (error) {
+    console.log("Error getting theme from localStorage: ", error);
+    return DEFAULT_THEME;
+  }
 };
 
 const themeSlice = createSlice({
@@ -13,11 +22,16 @@ const themeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state.theme = state.theme === "light" ? "dark" : "light";
-      localStorage.setItem("theme", state.theme);
+      try {
+        localStorage.setItem("theme", state.theme);
+      } catch (error) {
+        console.warn("Could not save theme to localStorage", error);
+      }
+
       document.documentElement.setAttribute("data-theme", state.theme);
     },
   },
 });
 
-export const { toggleTheme, syncTheme } = themeSlice.actions;
+export const { toggleTheme } = themeSlice.actions;
 export default themeSlice.reducer;

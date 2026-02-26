@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 import "./Shop.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getBikes, removeBike } from "../services/bikeSlice";
+import { getProducts, removeProduct } from "../services/productSlice";
 import { addToCart } from "../services/cartSlice";
 import { FILTER_OPTIONS, MESSAGES, SORT_OPTIONS } from "../constants/strings";
 import useBikes from "../hooks/useBikes";
@@ -17,7 +17,7 @@ import AddProductCard from "./AddProductCard";
 export default function Shop() {
   const dispatch = useDispatch();
   const { products, status } = useBikes();
-  const { items } = useSelector((state) => state.bikes);
+  const { items } = useSelector((state) => state.products);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   const { paginatedItems, totalPages } = useFilteredProducts(products);
@@ -27,12 +27,12 @@ export default function Shop() {
   }
 
   function handleDeleteBike(id) {
-    dispatch(removeBike(id));
+    dispatch(removeProduct(id));
   }
 
   useEffect(() => {
     if (items.length === 0) {
-      dispatch(getBikes());
+      dispatch(getProducts());
     }
   }, [dispatch, items.length]);
 

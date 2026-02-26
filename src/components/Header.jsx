@@ -17,7 +17,6 @@ export default function Header() {
   const cartItems = useSelector((state) => state.cart.items);
   const theme = useSelector((state) => state.theme.theme);
   const { isAdmin, profileName } = useSelector((state) => state.auth);
-  const displayUserName = isAdmin ? profileName : MESSAGES.MY_PROFILE;
 
   function handleElementRemoved(item) {
     dispatch(removeFromCart(item.id));
@@ -78,7 +77,7 @@ export default function Header() {
           onClick={handleAuthClick}
         >
           <User size={20} strokeWidth={2.5} />
-          <span className="account-name">{displayUserName}</span>
+          <span className="account-name">{profileName}</span>
         </button>
 
         <button className="icon-btn" onClick={() => dispatch(toggleTheme())}>
