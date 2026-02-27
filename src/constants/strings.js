@@ -33,6 +33,11 @@ export const MESSAGES = {
   OOPS: "Oops!",
   NO_PRODUCT_FOUND:
     "Looks like this product is playing hide and seek. Give it another shot, maybe this time it will be your lucky day!",
+  EMAIL_REQ: "Email is required.",
+  EMAIL_REQ_SYMBOL: "Email must contain an '@' symbol.",
+  MESSAGE_EMPTY: "Message cannot be empty.",
+  MESSAGE_SHORT: "Message must be at least 10 characters long.",
+  MESSAGE_LONG: "Message must be maximum 300 characters long.",
 };
 
 export const SORT_OPTIONS = [

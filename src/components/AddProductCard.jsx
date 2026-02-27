@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../services/productSlice";
 import "./AddProductCard.css";
 import { MESSAGES } from "../constants/strings";
+import { isValidProductPayload } from "../utils/productValidator";
 
 export default function AddProductCard() {
   const dispatch = useDispatch();
@@ -22,27 +23,20 @@ export default function AddProductCard() {
   }
 
   async function handleCreate() {
-    if (
-      !formData.name.trim() ||
-      !formData.price.trim() ||
-      !formData.category.trim()
-    ) {
-      alert("Please fill in the name, category and price!");
-      return;
-    }
-
-    const price = Number(formData.price);
-    if (isNaN(price) || price <= 0) {
-      alert("Price must be a positive number!");
-      return;
-    }
-
     const newProductData = {
       name: formData.name,
       category: formData.category,
-      price: price,
+      price: Number(formData.price),
       image: formData.image,
     };
+
+    if (!isValidProductPayload(newProductData)) {
+      alert(
+        "Invalid data! Check the name, category, and make sure the price is a positive number.",
+      );
+      return;
+    }
+
     try {
       const result = await dispatch(addProduct(newProductData)).unwrap();
       alert(`New product added successfully! ID: ${result.id}`);

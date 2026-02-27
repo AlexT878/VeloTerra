@@ -4,7 +4,7 @@ import {
   deleteProductFromDB,
   insertProductInDB,
 } from "./productService";
-import { isValidProductPayload } from "./validator";
+import { isValidProductPayload } from "../utils/productValidator";
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 

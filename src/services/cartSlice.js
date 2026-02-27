@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { isValidProductPayload } from "./validator";
+import { isValidProductPayload } from "../utils/productValidator";
 
 const loadCartFromStorage = () => {
   try {
@@ -11,7 +11,7 @@ const loadCartFromStorage = () => {
 
     return parsedData.filter((item) => isValidProductPayload(item, true));
   } catch (error) {
-    console.log("Error getting cart from localStorage: ", error);
+    console.warn("Error getting cart from localStorage: ", error);
     return [];
   }
 };
@@ -20,8 +20,18 @@ const saveCartToStorage = (items) => {
   try {
     localStorage.setItem("cart", JSON.stringify(items));
   } catch (error) {
-    console.log("Error saving cart to localStorage: ", error);
+    console.warn("Error saving cart to localStorage: ", error);
   }
+};
+
+export const addToCart = (product) => (dispatch, getState) => {
+  dispatch(_addToCart(product));
+  saveCartToStorage(getState().cart.items);
+};
+
+export const removeFromCart = (idToRemove) => (dispatch, getState) => {
+  dispatch(_removeFromCart(idToRemove));
+  saveCartToStorage(getState().cart.items);
 };
 
 const cartSlice = createSlice({
@@ -30,22 +40,19 @@ const cartSlice = createSlice({
     items: loadCartFromStorage(),
   },
   reducers: {
-    addToCart: (state, action) => {
+    _addToCart: (state, action) => {
       const product = action.payload;
       const exists = state.items.find((item) => item.id === product.id);
-
       if (!exists) {
         state.items.push(product);
-        saveCartToStorage(state.items);
       }
     },
-    removeFromCart: (state, action) => {
+    _removeFromCart: (state, action) => {
       const idToRemove = action.payload;
       state.items = state.items.filter((item) => item.id !== idToRemove);
-      saveCartToStorage(state.items);
     },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+const { _addToCart, _removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

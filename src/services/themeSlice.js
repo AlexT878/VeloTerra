@@ -9,9 +9,23 @@ const loadThemeFromStorage = () => {
     }
     return theme;
   } catch (error) {
-    console.log("Error getting theme from localStorage: ", error);
+    console.warn(error);
     return DEFAULT_THEME;
   }
+};
+
+export const toggleTheme = () => (dispatch, getState) => {
+  const currentTheme = getState().theme.theme;
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+
+  try {
+    localStorage.setItem("theme", newTheme);
+  } catch (error) {
+    console.warn(error);
+  }
+
+  document.documentElement.setAttribute("data-theme", newTheme);
+  dispatch(setThemeMode(newTheme));
 };
 
 const themeSlice = createSlice({
@@ -20,18 +34,11 @@ const themeSlice = createSlice({
     theme: loadThemeFromStorage(),
   },
   reducers: {
-    toggleTheme: (state) => {
-      state.theme = state.theme === "light" ? "dark" : "light";
-      try {
-        localStorage.setItem("theme", state.theme);
-      } catch (error) {
-        console.warn("Could not save theme to localStorage", error);
-      }
-
-      document.documentElement.setAttribute("data-theme", state.theme);
+    setThemeMode: (state, action) => {
+      state.theme = action.payload;
     },
   },
 });
 
-export const { toggleTheme } = themeSlice.actions;
+export const { setThemeMode } = themeSlice.actions;
 export default themeSlice.reducer;
